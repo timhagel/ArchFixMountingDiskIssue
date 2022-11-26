@@ -5,13 +5,11 @@ import json
 import logging
 import time
 from dataclasses import dataclass, field
-from typing import Optional, List
 from enum import Enum, auto
 from pathlib import Path
 from typing import Optional, List, Any, Dict, Union
 
 from ..general import SysCommand
-from ..exceptions import DiskError
 from ..exceptions import DiskError, SysCallError
 from ..output import log
 
@@ -23,12 +21,10 @@ class LsblkInfo:
 	pkname: str = ""
 	size: int = 0
 	log_sec: int = 0
-	pttype: Optional[str] = None
 	pttype: str = ""
 	ptuuid: str = ""
 	rota: bool = False
 	tran: Optional[str] = None
-	ptuuid: Optional[str] = None
 	partuuid: Optional[str] = None
 	uuid: Optional[str] = None
 	fstype: Optional[str] = None
@@ -72,23 +68,13 @@ class LsblkInfo:
 
 		return info
 
-def get_lsblk_info(dev_path: str) -> LsblkInfo:
-	fields = [f.name for f in dataclasses.fields(LsblkInfo)]
-	lsblk_fields = ','.join([f.upper().replace('_', '-') for f in fields])
 
-	output = SysCommand(f'lsblk --json -b -o+{lsblk_fields} {dev_path}').decode('UTF-8')
 class CleanType(Enum):
 	Blockdevice = auto()
 	Dataclass = auto()
 	Lsblk = auto()
 
-	if output:
-		block_devices = json.loads(output)
-		info = block_devices['blockdevices'][0]
-		lsblk_info = LsblkInfo()
 
-		for f in fields:
-			setattr(lsblk_info, f, info[f.replace('_', '-')])
 def _clean_field(name: str, clean_type: CleanType) -> str:
 	match clean_type:
 		case CleanType.Blockdevice:
@@ -98,7 +84,6 @@ def _clean_field(name: str, clean_type: CleanType) -> str:
 		case CleanType.Lsblk:
 			return name.replace('_percentage', '%').replace('_', '-').upper()
 
-		return lsblk_info
 
 def _fetch_lsblk_info(dev_path: Optional[Union[Path, str]] = None, retry: int = 3) -> List[LsblkInfo]:
 	fields = [_clean_field(f, CleanType.Lsblk) for f in LsblkInfo.fields()]
