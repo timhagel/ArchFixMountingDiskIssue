@@ -1,4 +1,4 @@
-# archinstalldiskinfofix
+#ArchFixMountingDiskIssue
 
 This repo contains the files needed to fix "Mounting disk issue during install"
 
@@ -16,7 +16,7 @@ First, we need to get the latest version of archinstall. Guide at archinstall [g
 
 <h1>Modifying Archinstall</h1>
 
-1. Download the fixed files with `git clone https://github.com/timhagel/archinstalldiskinfofix.git`
+1. Download the fixed files with `git clone https://github.com/timhagel/ArchFixMountingDiskIssue`
 2. Move fixed diskinfo.py with `mv diskinfo.py (wherever your archinstaller is)/archinstall/lib/disk`
 3. Move fixed helpers.py with `mv helpers.py (wherever your archinstaller is)/archinstall/lib/disk`
 
