@@ -1,4 +1,4 @@
-#ArchFixMountingDiskIssue
+<h1>ArchFixMountingDiskIssue</h1>
 
 This repo contains the files needed to fix "Mounting disk issue during install"
 
