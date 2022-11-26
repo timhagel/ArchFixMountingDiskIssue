@@ -17,11 +17,13 @@ First, we need to get the latest version of archinstall. Guide at archinstall [g
 <h1>Modifying Archinstall</h1>
 
 1. Download the fixed files with `git clone https://github.com/timhagel/ArchFixMountingDiskIssue`
-2. Move fixed diskinfo.py with `mv diskinfo.py (wherever your archinstaller is)/archinstall/lib/disk`
-3. Move fixed helpers.py with `mv helpers.py (wherever your archinstaller is)/archinstall/lib/disk`
+2. Cd to ArchFixMountingDiskIssue
+3. Move fixed diskinfo.py with `mv diskinfo.py (wherever your archinstaller is)/archinstall/lib/disk`
+4. Move fixed helpers.py with `mv helpers.py (wherever your archinstaller is)/archinstall/lib/disk`
 
 <h1>Installing Archinstall</h1>
 
+1. Cd into wherever you put your archinstall
 1. Build the project and install it using `python setup.py install`
 2. Start the installer with `python -m archinstall`
 3. Go through the installation process as normal
