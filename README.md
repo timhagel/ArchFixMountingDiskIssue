@@ -24,6 +24,7 @@ First, we need to get the latest version of archinstall. Guide at archinstall [g
 <h1>Installing Archinstall</h1>
 
 1. Cd into wherever you put your archinstall
-1. Build the project and install it using `python setup.py install`
-2. Start the installer with `python -m archinstall`
-3. Go through the installation process as normal
+2. Run `pip install setuptools`
+3. Build the project and install it using `python setup.py install`
+4. Start the installer with `python -m archinstall`
+5. Go through the installation process as normal
